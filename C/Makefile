@@ -12,7 +12,11 @@ all: ${NAME}
 	@./Grace
 	@diff Grace.c Grace_kid.c && echo "Grace OK" || echo "Grace KO"
 	@./Sully
-	@diff Sully.c Sully_4.c && echo "Sully OK" || echo "Sully KO"
+	@diff Sully.c Sully_4.c || echo "----------------------"
+	@diff Sully_4.c Sully_3.c || echo "----------------------"
+	@diff Sully_3.c Sully_2.c || echo "----------------------"
+	@diff Sully_2.c Sully_1.c || echo "----------------------"
+	@diff Sully_1.c Sully_0.c || echo "----------------------"
 
 clean:
 	rm -f tmp_Colleen Grace_kid.c Sully_[0-4].c Sully_[0-4]
