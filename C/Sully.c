@@ -4,7 +4,7 @@ char	cmd[100];
 #include <stdio.h>
 #include <stdlib.h>
 
-#define STR "hello"
+#define STR "#include <stdio.h>%cint main() {printf(\"hello\");}"
 
 int	main(void)
 {
@@ -14,7 +14,7 @@ int	main(void)
 		return (1);
 	sprintf(filename, "Sully_%d.c", i);
 	fd = fopen(filename, "w");
-	fprintf(fd, STR);
+	fprintf(fd, STR, 10);
 	fclose(fd);
 	sprintf(cmd, "clang -Wall -Wextra -Werror %s -o Sully_%d", filename, i);
 	system(cmd);

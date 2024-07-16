@@ -14,7 +14,7 @@ all: ${NAME}
 	@./Sully
 
 clean:
-	rm -f tmp_Colleen Grace_kid.c Sully_[0-4].c
+	rm -f tmp_Colleen Grace_kid.c Sully_[0-4].c Sully_[0-4]
 
 fclean: clean
 	rm -f ${NAME}
