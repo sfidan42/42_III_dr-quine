@@ -1,20 +1,20 @@
-SRC		=	Colleen.asm
-OBJ		=	${SRC:.asm=.o}
+SRC		=	Colleen.s
+OBJ		=	${SRC:.s=.o}
 ASM		=	nasm -f elf64
 
-%.o: %.asm
+%.o: %.s
 	${ASM} $< -o $@
 
 all: ${OBJ}
 	@gcc Colleen.o -o Colleen
 	@./Colleen > tmp_Colleen
-	@diff tmp_Colleen Colleen.c && echo "Colleen OK" || echo "Colleen KO"
+	@diff tmp_Colleen Colleen.s && echo "Colleen OK" || echo "Colleen KO"
 	
 clean:
 	rm -f tmp_Colleen
 
 fclean: clean
-	rm -f ${OBJ}
+	rm -f ${OBJ} ${OBJ:.o=}
 
 re: fclean all
 
