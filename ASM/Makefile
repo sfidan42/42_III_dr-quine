@@ -1,20 +1,20 @@
 SRC		=	Colleen.s Grace.s Sully.s
 OBJ		=	${SRC:.s=.o}
 EXE		=	${SRC:.s=}
-ASM		=	nasm -f elf64
+ASM		=	./nasm/nasm -f macho64
 
 %: %.s
 	${ASM} $< -o $@.o
-	gcc $@.o -o $@ -static
+	gcc $@.o -o $@ -Wl,-no_pie
 
 all: ${EXE}
-	@./Colleen > tmp_Colleen
-	@./Grace
-	@./Sully
-	@diff tmp_Colleen Colleen.s && echo "Colleen OK" || echo "Colleen KO"
-	@diff Grace.s Grace_kid.s && echo "Grace OK" || echo "Grace KO"
-	@diff Sully.s Sully_0.s || echo "Sully 5 vs 0"
-	@diff Sully_3.s Sully_2.s || echo "Sully 3 vs 2"
+	./Colleen > tmp_Colleen
+	diff tmp_Colleen Colleen.s && echo "Colleen OK" || echo "Colleen KO"
+	./Grace
+	diff Grace.s Grace_kid.s && echo "Grace OK" || echo "Grace KO"
+	./Sully
+	diff Sully.s Sully_0.s || echo "Sully 5 vs 0"
+	diff Sully_3.s Sully_2.s || echo "Sully 3 vs 2"
 
 clean:
 	rm -f tmp_Colleen Grace_kid.s Sully_*
